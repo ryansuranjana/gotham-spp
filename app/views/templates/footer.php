@@ -6,7 +6,7 @@
             <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; GOTHAM SPP 2021</span>
+                        <span>Copyright &copy; Gotham SPP 2023</span>
                     </div>
                 </div>
             </footer>
