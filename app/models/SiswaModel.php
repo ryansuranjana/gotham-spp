@@ -1,12 +1,11 @@
 <?php 
 
-class SiswaModel extends Model {
+class SiswaModel {
 
     public static function get()
     {
-        $db = DB();
-        $db->query("SELECT * FROM siswa");
-        return $db->resultAll();
+        DB()->query("SELECT * FROM siswa");
+        return DB()->resultAll();
     }
 
 }

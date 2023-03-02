@@ -1,22 +1,22 @@
 <?php 
 
-class PenggunaModel extends Model {
+class PenggunaModel {
 
     public function login($data)
     {
-        $this->db->query("SELECT * FROM pengguna WHERE username=:username AND password=:password");
-        $this->db->bind('username', $data['username']);
-        $this->db->bind('password', md5($data['password']));
-        $pengguna = $this->db->resultSingle();
+        DB()->query("SELECT * FROM pengguna WHERE username=:username AND password=:password");
+        DB()->bind('username', $data['username']);
+        DB()->bind('password', md5($data['password']));
+        $pengguna = DB()->resultSingle();
 
         if($pengguna) {
             $_SESSION['login'] = true;
             unset($pengguna['password']);
             $_SESSION['user'] = $pengguna;
             if($pengguna['role'] == 'siswa') {
-                $this->db->query("SELECT * FROM siswa WHERE pengguna_id=:pengguna_id");
-                $this->db->bind('pengguna_id', $pengguna['id']);
-                $_SESSION['user']['nama'] = $this->db->resultSingle()['nama'];
+                DB()->query("SELECT * FROM siswa WHERE pengguna_id=:pengguna_id");
+                DB()->bind('pengguna_id', $pengguna['id']);
+                $_SESSION['user']['nama'] = DB()->resultSingle()['nama'];
             }
             return true;
         } else {

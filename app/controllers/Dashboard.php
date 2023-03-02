@@ -17,7 +17,7 @@ class Dashboard extends Controller {
             'kelasCount' => count(KelasModel::get())
         ];
 
-        $this->viewTemplate('/pages/dashboard/index', $data);
+        $this->viewWithLayout('/pages/dashboard/index', $data);
     }
 
 }

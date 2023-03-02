@@ -12,7 +12,8 @@ function parseUrl($default) {
 }
 
 function DB() {
-    return new Database;
+    global $db;
+    return $db;
 }
 
 function redirect($route, $flash = null) {

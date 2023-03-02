@@ -1,12 +1,11 @@
 <?php 
 
-class PetugasModel extends Model {
+class PetugasModel {
 
     public static function get()
     {   
-        $db = DB();
-        $db->query("SELECT * FROM petugas");
-        return $db->resultAll();
+        DB()->query("SELECT * FROM petugas");
+        return DB()->resultAll();
     }
 
 }

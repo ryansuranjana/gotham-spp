@@ -7,7 +7,7 @@ class Controller {
         require_once '../app/views/' . $view . '.php';
     }
 
-    public function viewTemplate($view, $data = []) 
+    public function viewWithLayout($view, $data = []) 
     {
         require_once '../app/views/templates/header.php';
         require_once '../app/views/' . $view . '.php';

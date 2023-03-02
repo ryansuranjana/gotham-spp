@@ -11,9 +11,14 @@ class Database {
 
     public function __construct()
     {   
+        $option = [
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ];
         $dsn = "mysql:host={$this->dbhost};dbname={$this->dbname}";
+        
         try {
-            $this->dbh = new PDO($dsn, $this->dbuser, $this->dbpass);
+            $this->dbh = new PDO($dsn, $this->dbuser, $this->dbpass, $option);
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -83,3 +88,5 @@ class Database {
         return $this->dbh->lastInsertId();
     }
 }
+
+$db = new Database;

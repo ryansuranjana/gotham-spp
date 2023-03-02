@@ -1,12 +1,11 @@
 <?php 
 
-class TransaksiModel extends Model {
+class TransaksiModel {
 
     public static function get()
     {
-        $db = DB();
-        $db->query("SELECT * FROM transaksi_view");
-        return $db->resultAll();
+        DB()->query("SELECT * FROM transaksi_view");
+        return DB()->resultAll();
     }
 
 }
