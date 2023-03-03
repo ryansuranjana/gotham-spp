@@ -24,4 +24,37 @@ class PenggunaModel {
         }
     }
 
+    public static function create($data)
+    {
+        DB()->query("INSERT INTO pengguna (`username`, `password`, `role`) VALUES (:username, :password, :role)");
+        DB()->bind('username', $data['username']);
+        DB()->bind('password', md5($data['password']));
+        DB()->bind('role', $data['role']);
+        DB()->execute();
+    }
+
+    public static function find($id)
+    {
+        DB()->query("SELECT * FROM pengguna WHERE id=:id");
+        DB()->bind('id', $id);
+        return DB()->resultSingle();
+    }
+
+    public static function update($id, $data)
+    {
+        DB()->query("UPDATE pengguna SET username=:username, password=:password, role=:role WHERE id=:id");
+        DB()->bind('username', $data['username']);
+        DB()->bind('password', md5($data['password']));
+        DB()->bind('role', $data['role']);
+        DB()->bind('id', $id);
+        DB()->execute();
+    }
+
+    public static function delete($id)
+    {
+        DB()->query("DELETE FROM pengguna WHERE id=:id");
+        DB()->bind('id', $id);
+        DB()->execute();
+    }
+
 }
