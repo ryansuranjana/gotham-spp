@@ -16,11 +16,11 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="name">Nama Kelas <span class="text-danger">*</span></label>
-                            <input type="text" id="name" class="form-control" name="nama" value="<?= isset($data['kelas']) ? $data['kelas']['nama'] : '' ?>" required>
+                            <input type="text" id="name" class="form-control" placeholder="Masukkan Nama Kelas" name="nama" value="<?= isset($data['kelas']) ? $data['kelas']['nama'] : '' ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="kompetensi_keahlian">Kompetensi Keahlian <span class="text-danger">*</span></label>
-                            <input type="text" id="kompetensi_keahlian" class="form-control" name="kompetensi_keahlian" value="<?= isset($data['kelas']) ? $data['kelas']['kompetensi_keahlian'] : '' ?>" required>
+                            <input type="text" id="kompetensi_keahlian" class="form-control" placeholder="Masukkan Kompetensi Keahlian" name="kompetensi_keahlian" value="<?= isset($data['kelas']) ? $data['kelas']['kompetensi_keahlian'] : '' ?>" required>
                         </div>
                     </div>
                     <div class="card-footer">
