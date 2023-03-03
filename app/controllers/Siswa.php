@@ -49,6 +49,7 @@ class Siswa extends Controller {
                 'message' => 'Siswa berhasil ditambahkan!'
             ]);
         } catch (PDOException $e) {
+            DB()->rollBack();
             return redirect('/siswa/create', [
                 'status' => 'fail',
                 'message' => 'Siswa gagal ditambahkan!'
@@ -88,6 +89,7 @@ class Siswa extends Controller {
                 'message' => 'Siswa berhasil diedit!'
             ]);
         } catch (PDOException $e) {
+            DB()->rollBack();
             return redirect('/siswa/edit/' . $id, [
                 'status' => 'fail',
                 'message' => 'Siswa gagal diedit!'
@@ -112,6 +114,7 @@ class Siswa extends Controller {
                 'message' => 'Siswa berhasil dihapus!'
             ]);
         } catch (PDOException $e) {
+            DB()->rollBack();
             return redirect('/siswa', [
                 'status' => 'fail',
                 'message' => 'Siswa gagal dihapus!'
