@@ -38,23 +38,27 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item <?= routeCurrent('kelas') || routeCurrent('siswa') || routeCurrent('spp') || routeCurrent('petugas') || routeCurrent('admin') ? 'active' : '' ?>
-    ">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-globe"></i>
-            <span>Master Data</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= url('/kelas') ?>">Kelas</a>
-                <a class="collapse-item" href="<?= url('/siswa') ?>">Siswa</a>
-                <a class="collapse-item" href="<?= url('/spp') ?>">SPP</a>
-                <a class="collapse-item" href="<?= url('/petugas') ?>">Petugas</a>
-                <a class="collapse-item" href="<?= url('/admin') ?>">Admin</a>
+    <?php if($_SESSION['user']['role'] != 'siswa') { ?>
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item <?= routeCurrent('kelas') || routeCurrent('siswa') || routeCurrent('spp') || routeCurrent('petugas') || routeCurrent('admin') ? 'active' : '' ?>
+        ">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-globe"></i>
+                <span>Master Data</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="<?= url('/kelas') ?>">Kelas</a>
+                    <?php if($_SESSION['user']['role'] == 'admin') { ?>
+                        <a class="collapse-item" href="<?= url('/siswa') ?>">Siswa</a>
+                        <a class="collapse-item" href="<?= url('/spp') ?>">SPP</a>
+                        <a class="collapse-item" href="<?= url('/petugas') ?>">Petugas</a>
+                        <a class="collapse-item" href="<?= url('/admin') ?>">Admin</a>
+                    <?php } ?>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    <?php } ?>
 
 </ul>
