@@ -23,7 +23,7 @@ class SiswaModel {
         DB()->execute();
     }
 
-    public static function find($id)
+    public static function find($id)    
     {
         DB()->query("SELECT siswa.*, kelas.nama as kelas_nama, kelas.kompetensi_keahlian as kelas_kompetensi_keahlian, pembayaran.tahun_ajaran as pembayaran_tahun_ajaran, pembayaran.nominal as pembayaran_nominal FROM siswa INNER JOIN kelas ON kelas.id=siswa.kelas_id INNER JOIN pembayaran ON pembayaran.id=siswa.pembayaran_id WHERE siswa.id=:id");
         DB()->bind('id', $id);
@@ -49,6 +49,13 @@ class SiswaModel {
         DB()->query("DELETE FROM siswa WHERE id=:id");
         DB()->bind('id', $id);
         DB()->execute();
+    }
+
+    public static function transaksi($id)
+    {
+        DB()->query("SELECT transaksi.*, petugas.nama as petugas_nama, pembayaran.* FROM transaksi INNER JOIN petugas ON petugas.id=transaksi.petugas_id INNER JOIN pembayaran ON pembayaran.id=transaksi.pembayaran_id WHERE siswa_id=:id");
+        DB()->bind('id', $id);
+        return DB()->resultAll();
     }
 
 }

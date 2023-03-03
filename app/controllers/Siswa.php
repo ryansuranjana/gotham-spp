@@ -57,6 +57,14 @@ class Siswa extends Controller {
         }
     }
 
+    public function show($id)
+    {
+        $this->viewWithLayout('pages/siswa/show', [
+            'siswa' => SiswaModel::find($id),
+            'transaksi' => SiswaModel::transaksi($id)
+        ]);
+    }
+
     public function edit($id)
     {
         $this->viewWithLayout('pages/siswa/form', [
