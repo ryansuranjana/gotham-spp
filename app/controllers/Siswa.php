@@ -35,7 +35,7 @@ class Siswa extends Controller {
 
             PenggunaModel::create([
                 'username' => $data['nis'],
-                'password' => $data['nisn'],
+                'password' => 'potato',
                 'role' => 'siswa',
             ]);
             $penggunaId = DB()->lastInsertId();
@@ -83,9 +83,8 @@ class Siswa extends Controller {
             $data = $_POST;
             $penggunaId = SiswaModel::find($id)['pengguna_id'];
 
-            PenggunaModel::update($penggunaId, [
+            PenggunaModel::updateWithoutPassword($penggunaId, [
                 'username' => $data['nis'],
-                'password' => $data['nisn'],
                 'role' => 'siswa',
             ]);
 

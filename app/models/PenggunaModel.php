@@ -50,6 +50,15 @@ class PenggunaModel {
         DB()->execute();
     }
 
+    public static function updateWithoutPassword($id, $data)
+    {
+        DB()->query("UPDATE pengguna SET username=:username, role=:role WHERE id=:id");
+        DB()->bind('username', $data['username']);
+        DB()->bind('role', $data['role']);
+        DB()->bind('id', $id);
+        DB()->execute();
+    }
+
     public static function delete($id)
     {
         DB()->query("DELETE FROM pengguna WHERE id=:id");
