@@ -9,31 +9,27 @@ class Kelas extends Controller {
 
     public function index()
     {
-        $data = [
+        $this->viewWithLayout('pages/kelas/index', [
             'page_title' => 'Kelas',
             'kelas' => KelasModel::get()
-        ];
-
-        $this->viewWithLayout('pages/kelas/index', $data);
+        ]);
     }
 
     public function create()
     {
-        $data = [
-            'page_title' => 'Kelas',
-        ];
-
-        $this->viewWithLayout('pages/kelas/form', $data);
+        $this->viewWithLayout('pages/kelas/form', [
+            'page_title' => 'Tambah Kelas',
+        ]);
     }
 
     public function store()
     {
         try {   
-
             DB()->beginTransaction();
-            KelasModel::create($_POST);
-            DB()->commit();
 
+            KelasModel::create($_POST);
+
+            DB()->commit();
             return redirect('/kelas', [
                 'status' => 'success',
                 'message' => 'Kelas berhasil ditambahkan!'
@@ -49,22 +45,20 @@ class Kelas extends Controller {
 
     public function edit($id)
     {
-        $data = [
-            'page_title' => 'Kelas',
+        $this->viewWithLayout('pages/kelas/form', [
+            'page_title' => 'Edit Kelas',
             'kelas' => KelasModel::find($id)
-        ];
-
-        $this->viewWithLayout('pages/kelas/form', $data);
+        ]);
     }
 
     public function update($id)
     {
         try {   
-
             DB()->beginTransaction();
-            KelasModel::update($id, $_POST);
-            DB()->commit();
 
+            KelasModel::update($id, $_POST);
+
+            DB()->commit();
             return redirect('/kelas', [
                 'status' => 'success',
                 'message' => 'Kelas berhasil diedit!'
@@ -81,11 +75,11 @@ class Kelas extends Controller {
     public function delete($id)
     {
         try {   
-
             DB()->beginTransaction();
-            KelasModel::delete($id);
-            DB()->commit();
 
+            KelasModel::delete($id);
+
+            DB()->commit();
             return redirect('/kelas', [
                 'status' => 'success',
                 'message' => 'Kelas berhasil dihapus!'

@@ -3,6 +3,12 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
 
+    <?php Flasher::flash(function($flash) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $flash['message'] ?>
+        </div>
+    <?php }) ?>
+
     <div class="row">
         <div class="col-md-6 col-12">
             <form action="<?= isset($data['kelas']) ? url('/kelas/update/' . $data['kelas']['id']) : url('/kelas/store') ?>" method="post">
@@ -27,3 +33,5 @@
     </div>
 
 </div>
+
+<?php require_once '../app/views/includes/script.php' ?>
