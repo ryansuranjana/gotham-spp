@@ -42,6 +42,15 @@ class Siswa extends Controller {
 
             $data['pengguna_id'] = $penggunaId;
             SiswaModel::create($data);
+            $siswaId = DB()->lastInsertId();
+
+            if(!TransaksiModel::checkTransaksiexists($siswaId, $data['pembayaran_id'])) {
+                $pembayaran = PembayaranModel::find($data['pembayaran_id']);
+                TransaksiModel::create($siswaId, [
+                    'tahun_dibayar' => $pembayaran['tahun_ajaran'],
+                    'pembayaran_id' => $pembayaran['id']
+                ]);
+            } 
 
             DB()->commit();
             return redirect('/siswa', [
@@ -89,6 +98,14 @@ class Siswa extends Controller {
             ]);
 
             SiswaModel::update($id, $data);
+
+            if(!TransaksiModel::checkTransaksiexists($id, $data['pembayaran_id'])) {
+                $pembayaran = PembayaranModel::find($data['pembayaran_id']);
+                TransaksiModel::create($id, [
+                    'tahun_dibayar' => $pembayaran['tahun_ajaran'],
+                    'pembayaran_id' => $pembayaran['id']
+                ]);
+            }
 
             DB()->commit();
             return redirect('/siswa', [
