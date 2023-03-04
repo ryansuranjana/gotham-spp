@@ -67,8 +67,9 @@ class Siswa extends Controller {
     }
 
     public function show($id)
-    {
+    {   
         $this->viewWithLayout('pages/siswa/show', [
+            'page_title' => 'Detail Siswa',
             'siswa' => SiswaModel::find($id),
             'transaksi' => SiswaModel::transaksi($id)
         ]);
