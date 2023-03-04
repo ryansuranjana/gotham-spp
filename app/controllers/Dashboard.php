@@ -8,16 +8,21 @@ class Dashboard extends Controller {
     }
 
     public function index()
-    {
-        $data = [
-            'page_title' => 'Dashboard',
-            'petugasCount' => count(PetugasModel::get()),
-            'siswaCount' => count(SiswaModel::get()),
-            'transaksiCount' => count(TransaksiModel::get()),
-            'kelasCount' => count(KelasModel::get())
-        ];
-
-        $this->viewWithLayout('/pages/dashboard/index', $data);
+    {   
+        if($_SESSION['user']['role'] == 'siswa') {
+            $this->viewWithLayout('pages/dashboard/siswa', [
+                'page_title' => 'Dashboard',
+                'siswa' => SiswaModel::find($_SESSION['user']['siswa_id'])
+            ]);
+        } else {
+            $this->viewWithLayout('pages/dashboard/index', [
+                'page_title' => 'Dashboard',
+                'petugasCount' => count(PetugasModel::get()),
+                'siswaCount' => count(SiswaModel::get()),
+                'transaksiCount' => count(TransaksiModel::get()),
+                'kelasCount' => count(KelasModel::get())
+            ]);
+        }
     }
 
 }

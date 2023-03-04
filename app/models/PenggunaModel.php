@@ -16,7 +16,9 @@ class PenggunaModel {
             if($pengguna['role'] == 'siswa') {
                 DB()->query("SELECT * FROM siswa WHERE pengguna_id=:pengguna_id");
                 DB()->bind('pengguna_id', $pengguna['id']);
-                $_SESSION['user']['nama'] = DB()->resultSingle()['nama'];
+                $siswa = DB()->resultSingle();
+                $_SESSION['user']['nama'] = $siswa['nama'];
+                $_SESSION['user']['siswa_id'] = $siswa['id'];
             } else {
                 DB()->query("SELECT * FROM petugas WHERE pengguna_id=:pengguna_id");
                 DB()->bind('pengguna_id', $pengguna['id']);

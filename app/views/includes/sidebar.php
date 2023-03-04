@@ -21,13 +21,13 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <!-- Nav Item - Charts -->
-    <li class="nav-item <?= routeCurrent('entrytransaksi') ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= url('/entrytransaksi') ?>">
-            <i class="fas fa-fw fa-credit-card"></i>
-            <span>Entry Transaksi</span></a>
-    </li>
+    <?php if($_SESSION['user']['role'] != 'siswa') { ?>
+        <li class="nav-item <?= routeCurrent('entrytransaksi') ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= url('/entrytransaksi') ?>">
+                <i class="fas fa-fw fa-credit-card"></i>
+                <span>Entry Transaksi</span></a>
+        </li>
+    <?php } ?>
 
     <li class="nav-item <?= routeCurrent('historytransaksi') ? 'active' : '' ?>">
         <a class="nav-link" href="<?= url('/historytransaksi') ?>">
@@ -36,9 +36,10 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
-
+    
     <?php if($_SESSION['user']['role'] != 'siswa') { ?>
+        
+        <hr class="sidebar-divider">
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item <?= routeCurrent('kelas') || routeCurrent('siswa') || routeCurrent('spp') || routeCurrent('petugas') || routeCurrent('admin') ? 'active' : '' ?>
         ">
