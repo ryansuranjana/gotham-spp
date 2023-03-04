@@ -15,7 +15,7 @@ class EntryTransaksi extends Controller {
         ]);
     }
 
-    public function create($id)
+    public function show($id)
     {
         $this->viewWithLayout('pages/transaksi/form', [
             'page_title' => 'Entry Transaksi',

@@ -56,7 +56,7 @@
                     <tr>
                         <td>${siswaFilter[0].nama}</td>
                         <td>${siswaFilter[0].kelas_nama} ${siswaFilter[0].kelas_kompetensi_keahlian}</td>
-                        <td><a href="${baseUrl + '/entrytransaksi/create/' + siswaFilter[0].id}" class="btn btn-sm btn-secondary" >Bayar</a></td>
+                        <td><a href="${baseUrl + '/entrytransaksi/show/' + siswaFilter[0].id}" class="btn btn-sm btn-secondary" >Detail</a></td>
                     </tr>
                 `)
             } else {
