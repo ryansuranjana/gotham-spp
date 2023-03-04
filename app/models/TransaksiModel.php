@@ -33,6 +33,15 @@ class TransaksiModel {
         }
     }
 
+    public static function update($id, $data)
+    {
+        DB()->query("UPDATE transaksi SET tanggal_bayar=:tanggal_bayar, petugas_id=:petugas_id WHERE id=:id");
+        DB()->bind('tanggal_bayar', $data['tanggal_bayar']);
+        DB()->bind('petugas_id', $data['petugas_id']);
+        DB()->bind('id', $id);
+        DB()->execute();
+    }
+
     public static function checkTransaksiexists($siswa_id, $pembayaran_id)
     {
         DB()->query("SELECT * FROM transaksi WHERE siswa_id=:siswa_id AND pembayaran_id=:pembayaran_id");
@@ -46,5 +55,12 @@ class TransaksiModel {
             return false;
         }
     }
+
+    public static function delete($id)
+    {
+        DB()->query("DELETE FROM transaksi WHERE id=:id");
+        DB()->bind('id', $id);
+        DB()->execute();
+    }   
 
 }

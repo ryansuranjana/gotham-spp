@@ -59,6 +59,12 @@
         </div>
     </div>
 
+    <?php Flasher::flash(function($flash) { ?>
+        <div class="alert alert-<?= $flash['status'] == 'success' ? 'success' : 'danger' ?>" role="alert">
+            <?= $flash['message'] ?>
+        </div>
+    <?php }) ?>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-gradient-primary">
@@ -86,21 +92,21 @@
                                 </td>
                                 <td><?= $transaksi['tahun_dibayar'] ?></td>
                                 <td><?= date('F', mktime(0, 0, 0, $transaksi['bulan_dibayar'], 1,)) ?></td>
-                                <td><?= isset($transaksi['tanggal_dibayar']) ?  $transaksi['tanggal_dibayar'] : '-' ?></td>
+                                <td><?= isset($transaksi['tanggal_bayar']) ?  date('Y M d H:i:s A', strtotime($transaksi['tanggal_bayar']) + 60*60 ) : '-' ?></td>
                                 <td class="text-center">
-                                    <?php if(isset($transaksi['tanggal_dibayar'])) { ?>
+                                    <?php if(isset($transaksi['tanggal_bayar'])) { ?>
                                         <div class="btn btn-success btn-sm">Sudah</div>
                                     <?php } else { ?>
                                         <div class="btn btn-danger btn-sm">Belum</div>
                                     <?php } ?>
                                 </td>
                                 <td>
-                                    <?php if(isset($transaksi['tanggal_dibayar'])) { ?>
-                                        <a href="<?= url('/entrytransaksi/edit/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary">Batal</a>
+                                    <?php if(isset($transaksi['tanggal_bayar'])) { ?>
+                                        <a href="<?= url('/entrytransaksi/edit/' . $data['siswa']['id'] . '/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary">Batal</a>
                                     <?php } else { ?>
-                                        <a href="<?= url('/entrytransaksi/store/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary">Bayar</a>
+                                        <a href="<?= url('/entrytransaksi/store/' . $data['siswa']['id'] . '/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary">Bayar</a>
                                     <?php } ?>
-                                    <a href="<?= url('/entrytransaksi/delete/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary" onclick="return confirm('yakin ingin menghapus data ini?')"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a href="<?= url('/entrytransaksi/delete/' . $data['siswa']['id'] . '/' . $transaksi['id']) ?>" class="btn btn-sm btn-secondary" onclick="return confirm('yakin ingin menghapus data ini?')"><i class="fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

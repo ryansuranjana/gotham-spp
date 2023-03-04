@@ -24,4 +24,73 @@ class EntryTransaksi extends Controller {
         ]);
     }
 
+    public function store($siswaId, $id)
+    {
+        try {
+            DB()->beginTransaction();
+
+            TransaksiModel::update($id, [
+                'tanggal_bayar' => date('Y-m-d H:i:s'),
+                'petugas_id' => $_SESSION['user']['petugas_id']
+            ]);
+
+            DB()->commit();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'success',
+                'message' => 'Transaksi berhasil!'
+            ]);
+        } catch (PDOException $e) {
+            DB()->rollBack();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'fail',
+                'message' => 'Transaksi gagal!'
+            ]);
+        }
+    }
+
+    public function edit($siswaId, $id)
+    {
+        try {
+            DB()->beginTransaction();
+
+            TransaksiModel::update($id, [
+                'tanggal_bayar' => NULL,
+                'petugas_id' => NULL
+            ]);
+
+            DB()->commit();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'success',
+                'message' => 'Transaksi berhasil dibatalkan!'
+            ]);
+        } catch (PDOException $e) {
+            DB()->rollBack();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'fail',
+                'message' => 'Transaksi gagal dibatalkan!'
+            ]);
+        }
+    }
+
+    public function delete($siswaId, $id)
+    {
+        try {
+            DB()->beginTransaction();
+
+            TransaksiModel::delete($id);
+
+            DB()->commit();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'success',
+                'message' => 'Transaksi berhasil dihapus!'
+            ]);
+        } catch (PDOException $e) {
+            DB()->rollBack();
+            return redirect('/entrytransaksi/show/' . $siswaId, [
+                'status' => 'fail',
+                'message' => 'Transaksi gagal dihapus!'
+            ]);
+        }
+    }
+
 }

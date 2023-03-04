@@ -53,7 +53,7 @@ class SiswaModel {
 
     public static function transaksi($id)
     {
-        DB()->query("SELECT * FROM transaksi_view WHERE siswa_id=:id");
+        DB()->query("SELECT * FROM transaksi_view WHERE siswa_id=:id ORDER BY id");
         DB()->bind('id', $id);
         return DB()->resultAll();
     }
