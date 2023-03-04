@@ -15,6 +15,13 @@ class TransaksiModel {
         return DB()->resultAll();
     }
 
+    public static function findBySiswa($siswaId)
+    {
+        DB()->query("SELECT * FROM transaksi_view WHERE siswa_id=:siswa_id ORDER BY id");
+        DB()->bind('siswa_id', $siswaId);
+        return DB()->resultAll();
+    }
+
     public static function create($siswa_id, $pembayaran) 
     {
         $tahun_dibayar = $pembayaran['tahun_dibayar'];
