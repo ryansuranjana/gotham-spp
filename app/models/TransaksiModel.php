@@ -4,7 +4,7 @@ class TransaksiModel {
 
     public static function get()
     {
-        DB()->query("SELECT * FROM transaksi_view");
+        DB()->query("SELECT * FROM transaksi_view WHERE tanggal_bayar IS NOT NULL");
         return DB()->resultAll();
     }
 
