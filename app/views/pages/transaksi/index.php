@@ -43,6 +43,7 @@
 <script type="application/javascript">
     $(document).ready(function() {
         const siswa = JSON.parse('<?= json_encode($data['siswa']) ?>')
+        const baseUrl = '<?= url('') ?>'
         
         $('#form-search').on('submit', function(e) {
             e.preventDefault()
@@ -55,7 +56,7 @@
                     <tr>
                         <td>${siswaFilter[0].nama}</td>
                         <td>${siswaFilter[0].kelas_nama} ${siswaFilter[0].kelas_kompetensi_keahlian}</td>
-                        <td><a href="" class="btn btn-sm btn-secondary" >Bayar</a></td>
+                        <td><a href="${baseUrl + '/entrytransaksi/create/' + siswaFilter[0].id}" class="btn btn-sm btn-secondary" >Bayar</a></td>
                     </tr>
                 `)
             } else {

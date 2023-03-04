@@ -15,4 +15,13 @@ class EntryTransaksi extends Controller {
         ]);
     }
 
+    public function create($id)
+    {
+        $this->viewWithLayout('pages/transaksi/form', [
+            'page_title' => 'Entry Transaksi',
+            'siswa' => SiswaModel::find($id),
+            'transaksi' => SiswaModel::transaksi($id)
+        ]);
+    }
+
 }
