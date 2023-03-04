@@ -5,7 +5,9 @@
             <h1 class="h3 mb-5 text-gray-800">History Transaksi</h1>
         </div>
         <div>
-            <a href="<?= url('/laporan') ?>" id="btn-report" class="btn btn-sm btn-secondary">Generate Laporan</a>
+            <?php if($_SESSION['user']['role'] == 'admin') { ?>
+                <a href="<?= url('/laporan') ?>" target="_blank" id="btn-laporan" class="btn btn-sm btn-secondary">Generate Laporan</a>
+            <?php } ?>
         </div>
     </div>
     <!-- Page Heading -->
@@ -62,6 +64,7 @@
             destroy: true
         });
         const transaksi = JSON.parse('<?= json_encode($data['transaksi']) ?>');
+        const url = '<?= url('/laporan') ?>';
         const generateMonth = (month) => {
             $result = ''
             switch (month) {
@@ -129,6 +132,8 @@
                     destroy: true
                 });
             }
+            $('#btn-laporan').attr('href', url + '/' + $('#tahun-ajaran-input').find(':selected').val());
         })
+
     })
 </script>

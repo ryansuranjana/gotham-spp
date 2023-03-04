@@ -8,6 +8,13 @@ class TransaksiModel {
         return DB()->resultAll();
     }
 
+    public static function findByPembayaran($pembayaranId)
+    {
+        DB()->query("SELECT * FROM transaksi_view WHERE pembayaran_id=:pembayaran_id AND tanggal_bayar IS NOT NULL ORDER BY id");
+        DB()->bind('pembayaran_id', $pembayaranId);
+        return DB()->resultAll();
+    }
+
     public static function create($siswa_id, $pembayaran) 
     {
         $tahun_dibayar = $pembayaran['tahun_dibayar'];
