@@ -5,6 +5,8 @@
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
 
+    <h3 class="mb-4">Selamat Datang <?= $data['siswa']['nama'] ?> di Website Gotham SPP 🙌</h3>
+
     <!-- Content Row -->
     <div class="row mb-3">
         <div class="col-12">
