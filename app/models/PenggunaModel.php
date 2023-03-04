@@ -65,6 +65,14 @@ class PenggunaModel {
         DB()->execute();
     }
 
+    public static function updatePassword($id, $password)
+    {
+        DB()->query("UPDATE pengguna SET password=:password WHERE id=:id");
+        DB()->bind('password', md5($password));
+        DB()->bind('id', $id);
+        DB()->execute();
+    }
+
     public static function delete($id)
     {
         DB()->query("DELETE FROM pengguna WHERE id=:id");
