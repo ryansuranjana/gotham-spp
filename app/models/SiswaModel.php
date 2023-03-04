@@ -53,7 +53,7 @@ class SiswaModel {
 
     public static function transaksi($id)
     {
-        DB()->query("SELECT transaksi.*, petugas.nama as petugas_nama, pembayaran.* FROM transaksi INNER JOIN petugas ON petugas.id=transaksi.petugas_id INNER JOIN pembayaran ON pembayaran.id=transaksi.pembayaran_id WHERE siswa_id=:id");
+        DB()->query("SELECT * FROM transaksi_view WHERE siswa_id=:id");
         DB()->bind('id', $id);
         return DB()->resultAll();
     }
