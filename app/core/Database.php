@@ -11,16 +11,22 @@ class Database {
 
     public function __construct()
     {   
-        $option = [
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ];
+        $option = [PDO::ATTR_PERSISTENT => true];
+        if($_ENV['APP_DEBUG'] == 'true') {
+            $option[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+        }
         $dsn = "mysql:host={$this->dbhost};dbname={$this->dbname}";
         
         try {
             $this->dbh = new PDO($dsn, $this->dbuser, $this->dbpass, $option);
         } catch (Exception $e) {
-            die($e->getMessage());
+            if($_ENV['APP_DEBUG'] == 'true') {
+                die($e->getMessage());
+            } else {
+                http_response_code(500);
+                echo 'Internal server error';
+                exit;
+            }
         }
     }
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GOTHAM SPP - <?= $data['page_title'] ?></title>
+    <title><?= $_ENV['APP_NAME'] ?> - <?= $data['page_title'] ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= asset('/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
