@@ -55,7 +55,6 @@
                         <a class="collapse-item" href="<?= url('/siswa') ?>">Siswa</a>
                         <a class="collapse-item" href="<?= url('/spp') ?>">SPP</a>
                         <a class="collapse-item" href="<?= url('/petugas') ?>">Petugas</a>
-                        <a class="collapse-item" href="<?= url('/admin') ?>">Admin</a>
                     <?php } ?>
                 </div>
             </div>
